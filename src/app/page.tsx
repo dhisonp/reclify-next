@@ -1,12 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function Home() {
   const [displayNotes, setDisplayNotes] = useState<boolean>(false);
 
   const handleGetStarted = () => {
-  }
+    axios
+      .get('/api/login')
+      .then((res) => {
+        window.location.href = res.data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6 sm:p-24 animate-fade-in">
@@ -36,7 +45,10 @@ export default function Home() {
         </span>
       </div>
 
-      <button onClick={handleGetStarted} className="border-2 border-black px-6 py-4 transition duration-300 hover:bg-black hover:text-white mt-14">
+      <button
+        onClick={handleGetStarted}
+        className="border-2 border-black px-6 py-4 transition duration-300 hover:bg-black hover:text-white mt-14"
+      >
         Let's get you in &rarr;
       </button>
     </main>
