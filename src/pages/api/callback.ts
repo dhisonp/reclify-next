@@ -16,14 +16,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
-        // Authorization: 'Basic ' + buffer
       }
     });
 
     const { access_token, refresh_token } = response.data;
 
     // TODO: Store token in database or session
-    // ...
+    console.table({ access_token, refresh_token });
 
     // TODO: If token is stored, then tell the front the user is logged in
     res.redirect(`/dashboard?token=${'EXAMPLE_TOKEN'}`);
